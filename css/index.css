@@ -16,7 +16,7 @@ body {
 */
 
 #cube {
-    height: 500px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,8 +30,8 @@ body {
 }
 
 .side {
-    height: 50px;
-    width: 50px;
+    height: 175px;
+    width: 175px;
     background-color: purple;
     border: 5px solid white;
 }
@@ -40,4 +40,14 @@ body {
     height: 50px;
     width: 50px;
     border: 5px solid black;
+}
+
+.piece {
+    height: 50px;
+    width: 50px;
+    border: 2px solid white;
+}
+
+.face {
+    display: flex;
 }
