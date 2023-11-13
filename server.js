@@ -10,6 +10,7 @@ const expressLayouts = require('express-ejs-layouts')
 const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index')
+const registerRouter = require('./routes/register')
 
 // tell the app to use these dependencies
 app.set('view engine', 'ejs')
@@ -28,6 +29,7 @@ db.on('error', error => console.error(error))
 db.once('open', () => console.log('Connected to Mongoose'))
 
 app.use('/', indexRouter)
+app.use('/register', registerRouter)
 
 // listen on port 5000
 const PORT = process.env.PORT || 5000
