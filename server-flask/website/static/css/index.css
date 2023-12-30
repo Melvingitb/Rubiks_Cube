@@ -1,0 +1,140 @@
+body {
+    color: white;
+    background-color: black;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    /*
+    font-size: 1.2vw;
+    */
+    /*
+    justify-content: center;
+    */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #818281;
+    padding: 1em;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.register {
+    background-color: #818281;
+    /*
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    */
+    padding: 1em;
+    text-align: center;
+    border: 0.5rem solid white;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.content > p {
+    color: white;
+    font-size: 3em;
+}
+
+.links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1em;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+}
+
+.logo {
+    background-color: green;
+    height: 1em;
+    width: 1em;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: #818281;
+    padding: 1em;
+
+    /*
+    border: 1vh solid white;
+    */
+}
+
+footer > p {
+    color: white;
+    font-size: 1.2em;
+}
+
+
+/*
+.cube-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*/
+/*
+#cube {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.middle-row {
+    display: flex;
+    gap: 8px;
+}
+
+.side {
+    height: 175px;
+    width: 175px;
+    background-color: purple;
+    border: 5px solid white;
+}
+
+#invis {
+    height: 50px;
+    width: 50px;
+    border: 5px solid black;
+}
+
+.piece {
+    height: 50px;
+    width: 50px;
+    border: 2px solid white;
+}
+
+.face {
+    display: flex;
+}
+*/
