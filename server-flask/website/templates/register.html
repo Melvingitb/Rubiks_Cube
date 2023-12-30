@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block title %}Register{% endblock %}
+
+{% block content %}
+<nav class="navbar">
+    <a href="/" class="logo">
+        
+    </a>
+
+    <ul class="links">
+        <a href="/">Home</a>
+    </ul>
+</nav>
+
+<div class="content">
+    <div class="register">
+        <h2>Register</h2>
+        <div class="fields">
+
+            <form class="register-form" action="/register" method="POST">
+                
+                <div class="field">
+                    <label>Username</label>
+                    <input type="text" name="name">
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input type="text" name="password">
+                </div>
+
+                <div class="field">
+                    <label>Confirm Password</label>
+                    <input type="text" name="confirm">
+                </div>
+                <div>
+                    <a href="/">Cancel</a>
+                    <button type="submit">Register</button>
+                </div>
+
+            </form>
+
+        </div>
+        <p>Already a user? <a href="/login">Login</a> instead.</p>
+    </div>
+</div>
+{% endblock %}
