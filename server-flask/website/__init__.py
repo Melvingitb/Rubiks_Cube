@@ -1,4 +1,5 @@
 from flask import Flask
+from dotenv import load_dotenv, find_dotenv
 
 # makes an instance of the app
 def create_app():
