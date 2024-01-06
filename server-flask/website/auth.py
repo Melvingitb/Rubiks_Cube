@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from . import db
 import bcrypt
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
@@ -11,23 +12,32 @@ def login():
         name = request.form.get('name')
         password = request.form.get('password')
 
-        users = db.users
-        login_user = users.find_one({'username' : name})
+        #users = db.users
+        #logged_user = users.find_one({'username' : name})
+        try:
+            logged_user = User.objects.get(username=name)
+        except:
+            flash('Invalid username & password combination.', category='error')
+            return render_template("login.html", user=current_user)
 
-        if login_user:
-            if bcrypt.hashpw(password.encode('utf-8'), login_user['password'].encode('utf-8')) == login_user['password'].encode('utf-8'):
+        if logged_user:
+            if bcrypt.hashpw(password.encode('utf-8'), logged_user.password.encode('utf-8')) == logged_user.password.encode('utf-8'):
                 flash('Logged in Successfully!', category='success')
+                login_user(logged_user, remember=True)
+                return redirect(url_for('views.timer'))
             else:
                 flash('Invalid username & password combination.', category='error')
         else:
             flash('Invalid username & password combination.', category='error')
 
 
-    return render_template("login.html")
+    return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
+@login_required
 def logout():
-    return "<p>logout</p>"
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @auth.route('/register', methods=['GET', 'POST'])
 def register():
@@ -51,9 +61,10 @@ def register():
 
                 new_user = User(username=name, password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()))
                 new_user.save()
+                login_user(new_user, remember=True)
                 flash('Account created!', category='success')
 
-                return redirect(url_for('views.home'))
+                return redirect(url_for('views.timer'))
             else:
                 flash('Username already exists.', category='error')
 

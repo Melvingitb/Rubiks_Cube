@@ -9,6 +9,9 @@ class User(Document, UserMixin):
     password = StringField(required=True)
     date = DateTimeField(default=datetime.datetime.utcnow)
 
+    def get_id(self):
+        return str(self.pk)
+
 class Solve(Document):
     time = DecimalField(required=True)
     user = ReferenceField(User)
