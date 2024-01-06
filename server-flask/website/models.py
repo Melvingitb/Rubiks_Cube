@@ -4,6 +4,7 @@ from mongoengine import *
 import datetime
 
 class User(Document, UserMixin):
+    meta = {'collection' : 'users'}
     username = StringField(required=True)
     password = StringField(required=True)
     date = DateTimeField(default=datetime.datetime.utcnow)
