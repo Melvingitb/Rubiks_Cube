@@ -13,7 +13,10 @@ class User(Document, UserMixin):
         return str(self.pk)
 
 class Solve(Document):
+    meta = {'collection' : 'solves'}
     time = DecimalField(required=True)
+    scramble = StringField(required=True)
     user = ReferenceField(User)
     plustwo = BooleanField()
+    date = DateTimeField(default=datetime.datetime.utcnow)
     
