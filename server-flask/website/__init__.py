@@ -6,8 +6,10 @@ from flask_pymongo import PyMongo
 from mongoengine import *
 from flask_login import LoginManager
 
+# finds the .env file
 load_dotenv(find_dotenv())
 
+# get the database url from the env file and connects to database with mongoengine
 DATABASE_URL = os.environ.get("DATABASE_URL")
 conn = connect(host=DATABASE_URL)
 db = get_db()
@@ -51,10 +53,12 @@ def create_app():
 
     from .models import User, Solve
 
+    # lets you manage login functionality with flask login
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
+    # define which user is loaded from the database for flask login
     @login_manager.user_loader
     def load_user(id):
         try:

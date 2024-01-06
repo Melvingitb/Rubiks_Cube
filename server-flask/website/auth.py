@@ -4,22 +4,27 @@ from . import db
 import bcrypt
 from flask_login import login_user, login_required, logout_user, current_user
 
+# organizes all the authentication routes into a single blueprint
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    # if it is a post request:
     if request.method == 'POST':
         name = request.form.get('name')
         password = request.form.get('password')
 
         #users = db.users
         #logged_user = users.find_one({'username' : name})
+
+        # check if the username exists in the DB.
         try:
             logged_user = User.objects.get(username=name)
         except:
             flash('Invalid username & password combination.', category='error')
             return render_template("login.html", user=current_user)
 
+        # check if the hased passwords match, and if they do then login the user
         if logged_user:
             if bcrypt.hashpw(password.encode('utf-8'), logged_user.password.encode('utf-8')) == logged_user.password.encode('utf-8'):
                 flash('Logged in Successfully!', category='success')
@@ -33,6 +38,8 @@ def login():
 
     return render_template("login.html", user=current_user)
 
+
+# logs out the user from flask login
 @auth.route('/logout')
 @login_required
 def logout():
@@ -46,6 +53,7 @@ def register():
         password = request.form.get('password')
         confirm = request.form.get('confirm')
 
+        # check if the fields meet the requirements
         if len(name) < 2:
             flash('Username must be greater than 2 characters.', category='error')
         elif len(password) < 2:
