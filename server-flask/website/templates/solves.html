@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Solves{% endblock %}
+
+{% block content %}
+
+<nav class="navbar">
+    <a href="/" class="logo">
+        
+    </a>
+
+    <ul class="links">
+        <a href="/timer">Timer</a>
+        <a href="/logout">Logout</a>
+    </ul>
+</nav>
+
+<div class="timer-content">
+    <p class="time">Hi {{ user.username }}</p>
+
+</div>
+
+{% endblock %}

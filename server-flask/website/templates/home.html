@@ -7,8 +7,14 @@
     </a>
 
     <ul class="links">
+        {% if user.is_authenticated %}
+        <a href="/timer">Timer</a>
+        <a href="/solves">My Solves</a>
+        <a href="/logout">Logout</a>
+        {% else %}
         <a href="/login">Login</a>
         <a href="/register">Register</a>
+        {% endif %}
     </ul>
 </nav>
 

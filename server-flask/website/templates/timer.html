@@ -1,6 +1,26 @@
 {% extends "base.html" %} {% block title %}Timer{% endblock %}
 
 {% block content %}
-timer {{ user.username }}
+
+<nav class="navbar">
+    <a href="/" class="logo">
+        
+    </a>
+
+    <ul class="links">
+        <a href="/solves">My Solves</a>
+        <a href="/logout">Logout</a>
+    </ul>
+</nav>
+
+<div class="timer-content">
+    <p class="scramble">R R R R R R R R R R R R R R R R R R R R</p>
+    <p class="time">
+        <span id="seconds">0.01</span>
+    </p>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/timer.js') }}"></script>
 
 {% endblock %}

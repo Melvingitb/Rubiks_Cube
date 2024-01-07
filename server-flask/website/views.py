@@ -16,3 +16,8 @@ def home():
 @login_required
 def timer():
     return render_template("timer.html", user=current_user)
+
+@views.route('solves')
+@login_required
+def solves():
+    return render_template("solves.html", user=current_user)

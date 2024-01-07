@@ -27,6 +27,24 @@ body {
     justify-content: center;
 }
 
+.timer-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-content > .time {
+    color: white;
+    font-size: 5em;
+}
+
+.timer-content > .scramble {
+    color: white;
+    font-size: 2em;
+}
+
 .register {
     background-color: #818281;
     /*
