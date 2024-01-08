@@ -21,6 +21,6 @@ class Solve(Document):
     time = DecimalField(required=True)
     scramble = StringField(required=True)
     user = ReferenceField(User)
-    plustwo = BooleanField()
+    plustwo = BooleanField(default=False)
     date = DateTimeField(default=datetime.datetime.utcnow)
     
