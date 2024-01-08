@@ -82,12 +82,14 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
+// generates a random legal scramble
 function generateScramble() {
     let ret = '';
     let lastMove;
     let nextMove;
     let moves = ["R", "R\'", "R2", "L", "L\'", "L2", "U", "U\'", "U2", "B", "B\'", "B2", "F", "F\'", "F2", "D", "D\'", "D2"];
 
+    // shuffle the moves, pop a move, add it to the scramble, then remove related moves from moves list
     shuffle(moves);
     lastMove = moves.pop();
     ret = ret.concat(lastMove, ' ');
@@ -118,6 +120,7 @@ function generateScramble() {
     return ret;
 }
 
+// puts all related moves back into the moves array
 function replaceMoves(previousMove, movesArray) {
     let letter = previousMove.charAt(0);
 
@@ -128,8 +131,8 @@ function replaceMoves(previousMove, movesArray) {
     return movesArray;
 }
 
+// removes all related moves from the array
 function validateMoves(previousMove, movesArray) {
-    console.log(typeof previousMove);
     if (previousMove.slice(-1) == '\''){
         let letter = previousMove.charAt(0);
 
