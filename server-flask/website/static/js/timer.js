@@ -1,4 +1,4 @@
-const scramble = document.querySelector('#scramble');
+const scrambleDisplay = document.querySelector('#scramble');
 const display = document.querySelector('#seconds');
 
 var timeWhenPressed = 0;
@@ -10,16 +10,17 @@ var readyToStartTime = false;
 var timing = false;
 var interval;
 var displayInterval;
+var scramble = generateScramble();
 
-scramble.textContent = generateScramble();
+scrambleDisplay.textContent = scramble;
 
 document.addEventListener('keydown', (event) => {
-    console.log(event.key);
+    //console.log(event.key);
 
     if (event.key == ' ' && timeWhenPressed == 0 && !timing){
-        console.log('spacebar pressed');
+        //console.log('spacebar pressed');
         timeWhenPressed = new Date().getTime();
-        console.log(timeWhenPressed);
+        //console.log(timeWhenPressed);
         display.style.color = 'red';
     }
     else if (event.key == ' ' && timeWhenPressed != 0 && !timing){
@@ -33,20 +34,26 @@ document.addEventListener('keydown', (event) => {
         //timing = false;
         readyToStartTime = false;
         display.style.color = 'red';
-        display.textContent = solveTime.toFixed(2);
         clearInterval(interval);
         clearInterval(displayInterval);
+        display.textContent = solveTime.toFixed(2);
 
-        scramble.textContent = generateScramble();
+        console.log(solveTime);
+        console.log(scramble);
+        
+        sendSolve(solveTime, scramble);
+
+        scramble = generateScramble();
+        scrambleDisplay.textContent = scramble;
         //timeWhenPressed = 0;
     }
 });
 
 document.addEventListener('keyup', (event) => {
-    console.log(event.key);
+    //console.log(event.key);
 
     if (event.key == ' '){
-        console.log('spacebar released');
+        //console.log('spacebar released');
         if (readyToStartTime) {
             timeWhenReleased = new Date().getTime();
             display.style.color = 'white';
@@ -68,17 +75,6 @@ document.addEventListener('keyup', (event) => {
             timeWhenPressed = 0;
             timing = false;
         }
-        /*
-        console.log('spacebar released');
-        timeWhenReleased = new Date().getTime();
-
-        if (timeWhenReleased - timeWhenPressed > 1000){
-            display.style.color = 'blue';
-        }
-        else {
-            display.style.color = 'white';
-        }
-        */
     }
 });
 
@@ -95,8 +91,8 @@ function generateScramble() {
     ret = ret.concat(lastMove, ' ');
     moves = validateMoves(lastMove, moves);
 
-    console.log(moves);
-    console.log(ret);
+    //console.log(moves);
+    //console.log(ret);
 
     for (let i = 0; i < 18; i++){
 
@@ -113,10 +109,8 @@ function generateScramble() {
             lastMove = nextMove;
             
         }
-
-
     }
-    console.log(ret);
+    //console.log(ret);
     return ret;
 }
 
@@ -183,9 +177,9 @@ function shuffle(array) {
     return array;
 }
 
-function sendSolve(time) {
+function sendSolve(time, scramble) {
     fetch("/solves", {
         method: "POST",
-        body: JSON.stringify({ test: test})
+        body: JSON.stringify({ time : time, scramble : scramble})
     })
 }

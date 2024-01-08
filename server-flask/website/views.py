@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, jsonify
 from flask_login import login_required, current_user
+from .models import User, Solve
+import json
 
 # blueprints allow you to organize routes into groups
 views = Blueprint('views', __name__)
@@ -17,7 +19,18 @@ def home():
 def timer():
     return render_template("timer.html", user=current_user)
 
-@views.route('solves')
+@views.route('/solves', methods=['GET', 'POST'])
 @login_required
 def solves():
+    if request.method == 'POST':
+        # load the JSON from the request
+        solve = json.loads(request.data)
+        time = float(solve['time'])
+        scramble = solve['scramble']
+        new_solve = Solve(time=time, scramble=scramble, user=current_user)
+        new_solve.save()
+
+        return jsonify({})
+
+
     return render_template("solves.html", user=current_user)
