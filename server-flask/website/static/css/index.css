@@ -45,6 +45,33 @@ body {
     font-size: 2em;
 }
 
+#solvetable {
+    background-color: #818281;
+    border: 0.2em solid white;
+    border-radius: 0.2em;
+    border-collapse: collapse;
+}
+
+thead {
+    font-size: 2em;
+}
+
+tbody {
+    font-size: 1.2em;
+}
+
+th, td {
+    padding: 0.3em;
+    padding-left: 1em;
+    padding-right: 1em;
+    border: 0.1em solid white;
+    border-radius: 0.2em;
+}
+
+td {
+    text-align: center;
+}
+
 .register {
     background-color: #818281;
     /*

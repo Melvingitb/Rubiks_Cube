@@ -98,7 +98,7 @@ function generateScramble() {
 
         shuffle(moves);
         nextMove = moves.pop();
-        if (i == 18){
+        if (i == 17){
             ret = ret.concat(nextMove);
         }
         else {
