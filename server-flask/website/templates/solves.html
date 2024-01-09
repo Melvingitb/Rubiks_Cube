@@ -30,6 +30,7 @@
         </thead>
 
         <tbody>
+            <!-- 
             <tr>
                 <td>test</td>
                 <td>test</td>
@@ -37,6 +38,18 @@
                 <td>test</td>
                 <td><button>&times;</button></td>
             </tr>
+            -->
+
+            {% for solve in solves %}
+            <tr>
+                <td>{{ solve.date }}</td>
+                <td>{{ solve.time }}</td>
+                <td>{{ solve.scramble }}</td>
+                <td>{{ solve.plustwo }}</td>
+                <td><button>&times;</button></td>
+            </tr>
+            {% endfor %}
+
         </tbody>
     </table>
 

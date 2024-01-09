@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify
 from flask_login import login_required, current_user
 from .models import User, Solve
+from . import db
 import json
 
 # blueprints allow you to organize routes into groups
@@ -33,4 +34,6 @@ def solves():
         return jsonify({})
 
 
-    return render_template("solves.html", user=current_user)
+    user_solves = Solve.objects.order_by('-date')(user=current_user)
+
+    return render_template("solves.html", user=current_user, solves=user_solves)
