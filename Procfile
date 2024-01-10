@@ -1,1 +1,1 @@
-web: gunicorn main:app
+web: cd server-flask && gunicorn main:app
