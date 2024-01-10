@@ -46,7 +46,7 @@
                 <td>{{ solve.time }}</td>
                 <td>{{ solve.scramble }}</td>
                 <td>{{ solve.plustwo }}</td>
-                <td><button>&times;</button></td>
+                <td><button type="button" onclick="deleteSolve('{{ solve.pk }}')">&times;</button></td>
             </tr>
             {% endfor %}
 
@@ -54,5 +54,7 @@
     </table>
 
 </div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/solves.js') }}"></script>
 
 {% endblock %}
