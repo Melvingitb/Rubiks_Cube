@@ -20,7 +20,7 @@ def home():
 def timer():
     return render_template("timer.html", user=current_user)
 
-@views.route('/solves', methods=['GET', 'POST', 'DELETE'])
+@views.route('/solves', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_required
 def solves():
     if request.method == 'POST':
@@ -32,7 +32,7 @@ def solves():
         new_solve.save()
 
         return jsonify({})
-    elif request.method== 'DELETE':
+    elif request.method == 'DELETE':
         solve = json.loads(request.data)
         id = solve['id']
         try:
@@ -42,6 +42,21 @@ def solves():
             return jsonify({})
         
         solve_delete.delete()
+        return jsonify({})
+    elif request.method == 'PUT':
+        solve = json.loads(request.data)
+        id = solve['id']
+        try:
+            solve_put = Solve.objects.get(pk=id)
+        except:
+            flash('Error updating solve.', category='error')
+            return jsonify({})
+        
+        solve_put.time = solve_put.time + 2
+        solve_put.plustwo = True
+
+        solve_put.save()
+
         return jsonify({})
 
 

@@ -45,7 +45,7 @@
                 <td>{{ solve.date }}</td>
                 <td>{{ solve.time }}</td>
                 <td>{{ solve.scramble }}</td>
-                <td>{{ solve.plustwo }}</td>
+                <td><button type="button" onclick="plusTwo('{{ solve.pk }}')">+2</button></td>
                 <td><button type="button" onclick="deleteSolve('{{ solve.pk }}')">&times;</button></td>
             </tr>
             {% endfor %}
