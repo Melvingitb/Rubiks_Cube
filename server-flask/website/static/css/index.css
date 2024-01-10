@@ -116,10 +116,17 @@ a {
     font-size: 1.2em;
 }
 
+/*
 .logo {
     background-color: green;
     height: 1em;
     width: 1em;
+}
+*/
+
+img {
+    height: 1.3em;
+    width: auto;
 }
 
 footer {
