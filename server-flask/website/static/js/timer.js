@@ -30,7 +30,7 @@ document.addEventListener('keydown', (event) => {
             readyToStartTime = true;
         }
     }
-    else if (timing){
+    else if (event.key == ' ' && timing){
         //timing = false;
         readyToStartTime = false;
         display.style.color = 'red';
