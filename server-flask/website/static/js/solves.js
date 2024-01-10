@@ -3,6 +3,6 @@ function deleteSolve(solveID) {
         method: "DELETE",
         body: JSON.stringify({ id : solveID})
     }).then((_res) => {
-        window.location.href = "/";
+        window.location.href = "/solves";
     });
 }
